@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>jQuery点击图片相册掀开切换效果</title>
+
+<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){   
+		  
+	var interval;
+	$(".container img").click(function cover(){
+			$(this).addClass("zoom").fadeOut(700,append);		
+			function append(){
+			$(this).removeClass("zoom").appendTo(".container").show();
+			var name = $(".container").children("img").first().attr("alt");
+			 $(".name p").text("No "+name);
+			}	
+	  
+	})
+	
+	function auto(){
+			var play = $(".container").children("img").first();
+			play.addClass("zoom").fadeOut(700,append);		
+			function append(){
+			$(this).removeClass("zoom").appendTo(".container").show();
+			var name = $(this).parent().children("img").first().attr("alt");
+			 $(".name p").text("No "+name);
+			}
+			interval = setTimeout(auto,5000);
+	}
+	
+	$(".container img").hover(function(){
+			stopPlay();
+	},function(){
+			interval = setTimeout(auto,5000);
+	})
+	
+	function stopPlay(){
+		clearTimeout(interval)
+	}
+	auto();
+					
+})
+</script>
+
+</head>
+<body><script src="/demos/googlegg.js"></script>
+
+<div class="container" style="margin-top:100px"> 
+  <img src="images/a1.png" alt="1" /> 
+  <img src="images/a2.png" alt="2" /> 
+  <img src="images/a3.png" alt="3" /> 
+  <img src="images/a4.png" alt="4" /> 
+  <img src="images/a5.png" alt="5" /> 
+</div>
+<div class="name">
+<p>No 1</p>
+</div>
+
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+<p>适用浏览器：360、FireFox、Chrome、Safari、Opera、傲游、搜狗、世界之窗. 不支持IE8及以下浏览器。</p>
+<p>来源：<a href="http://www.lanrenzhijia.com/" target="_blank">懒人素材</a></p>
+</div>
+</body>
+</html>
+
